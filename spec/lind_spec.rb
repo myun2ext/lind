@@ -30,7 +30,7 @@ describe Lind do
   it { MockLib.x_plus_y(4, 7).should eq 11 }
   it { MockLib.get_string().to_s.should eq "String" }
   it {
-    buf = Fiddle::Pointer.malloc(7)
+    buf = Lind.new_buffer(7)
     MockLib.get_string_buffer(buf)
     buf.to_s.should eq "String"
   }
