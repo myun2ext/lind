@@ -1,0 +1,2 @@
+module Lind
+end
