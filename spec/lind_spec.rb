@@ -1,4 +1,4 @@
-require './lib/lind/of_fiddle_importer'
+require './lib/lind/of_fiddle'
 
 describe Lind do
   before(:all) do
@@ -14,13 +14,13 @@ describe Lind do
 
   let(:declare_module) do
     module MockLib
-      extend Lind::OfFiddleImporter
+      extend Lind::OfFiddle
 
       library "./spec/mock"
-      declare :x_plus_y,          ["int", "int"],  "int"
-      declare :get_string,        [],              "const char*"
-      declare :get_string_buffer, ["char*"],       "void"
-      declare :check_string,      ["const char*"], "int"
+      declare :x_plus_y,          [:int, :int], :int
+      declare :get_string,        [], :s
+      declare :get_string_buffer, [:s]
+      declare :check_string,      [:s], :int
     end
   end
   before do
