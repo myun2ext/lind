@@ -10,7 +10,7 @@ void get_string_buffer(char* s)
 {
 	strcpy(s, "String");
 }
-int set_string(char* s)
+int check_string(const char* s)
 {
 	return strcmp(s, "String");
 }
