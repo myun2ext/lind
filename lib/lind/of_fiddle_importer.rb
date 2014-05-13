@@ -6,7 +6,7 @@ module Lind
     include Fiddle::Importer
 
     def library(name)
-      dlload name
+      dlload name.to_s
     end
 
     def declare(name, args, ret)

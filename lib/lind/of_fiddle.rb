@@ -2,7 +2,7 @@ require 'fiddle'
 module Lind
   module OfFiddle
     def library(name)
-      @lib = Fiddle::Handle.new(name)
+      @lib = Fiddle::Handle.new(name.to_s)
     end
 
     def declare(name, arg_types = [], ret_type = TYPE_VOID)

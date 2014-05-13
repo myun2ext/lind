@@ -17,10 +17,10 @@ describe Lind do
       extend Lind::OfFiddleImporter
 
       library "./spec/mock"
-      declare "x_plus_y",          ["int", "int"],  "int"
-      declare "get_string",        [],              "const char*"
-      declare "get_string_buffer", ["char*"],       "void"
-      declare "check_string",      ["const char*"], "int"
+      declare :x_plus_y,          ["int", "int"],  "int"
+      declare :get_string,        [],              "const char*"
+      declare :get_string_buffer, ["char*"],       "void"
+      declare :check_string,      ["const char*"], "int"
     end
   end
   before do
