@@ -1,9 +1,15 @@
-#require './lib/lind/of_fiddle'
 require './lib/lind/of_fiddle_importer'
 
 describe Lind do
   before do
-    `gcc -shared -o spec/mock.dll spec/mock_src/mock.c`
+    if RUBY_PLATFORM.downcase =~ /mswin(?!ce)|mingw|cygwin|bccwin/
+      libext = "dll"
+    else
+      libext = "so"
+    end
+    `gcc -shared -o spec/mock.#{libext} spec/mock_src/mock.c -fno-builtin-strcpy`
+
+    $?.exitstatus.should eq 0
   end
 
   let(:declare_module) do
