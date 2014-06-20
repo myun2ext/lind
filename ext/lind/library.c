@@ -1,3 +1,4 @@
+#include <windows.h>
 #include "rubyext.h"
 
 struct lind_library_inner_t
@@ -19,7 +20,6 @@ VALUE lind_library_alloc(VALUE self)
 VALUE lind_llibrary_initialize(VALUE self, VALUE name)
 {
 	struct lind_library_inner_t* p;
-
 	Data_Get_Struct(self, struct lind_library_inner_t, p);
 
 	p->h = LoadLibrary(StringValuePtr(name));
@@ -32,14 +32,14 @@ VALUE lind_llibrary_initialize(VALUE self, VALUE name)
 
 void Init_lind_library()
 {
-	VALUE _lind;
-	VALUE _lind_core;
-	VALUE _lind_library;
+	RB_MODULE mod_lind;
+	RB_MODULE mod_core;
+	RB_MODULE mod_library;
 
-	_lind = 	    rb_define_module("Lind");
-	_lind_core = 	rb_define_module_under(_lind, "Core");
-	_lind_library = rb_define_module_under(_lind_core, "Library");
+	mod_lind = 	  _RB_MODULE("Lind");
+	mod_core =    _RB_MODULE_IN("Core", mod_lind);
+	mod_library = _RB_MODULE_IN("Library", mod_core);
 
-	rb_define_alloc_func(_lind_library, lind_library_alloc);
-	rb_define_private_method(_lind_library, "initialize", lind_llibrary_initialize, 1);
+	rb_define_alloc_func(mod_library, lind_library_alloc);
+	rb_define_private_method(mod_library, "initialize", lind_llibrary_initialize, 1);
 }
